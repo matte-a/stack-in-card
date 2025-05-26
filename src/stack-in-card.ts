@@ -72,6 +72,10 @@ class StackInCard extends LitElement implements LovelaceCard {
         const stackRoot = this._card.shadowRoot.getElementById('root');
         if (stackRoot) stackRoot.style.padding = '8px';
       }
+      if (this._card?.shadowRoot) {
+        const stackRoot = this._card.shadowRoot.getElementById('root');
+        if (stackRoot) stackRoot.style.gap = '0px';
+      }
     }, 500);
   }
 
