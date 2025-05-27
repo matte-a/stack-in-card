@@ -66,16 +66,17 @@ class StackInCard extends LitElement implements LovelaceCard {
     super.updated(changedProperties);
     if (!this._card) return;
     this._waitForChildren(this._card, false);
+    if (this._card?.shadowRoot) {
+      const stackRoot = this._card.shadowRoot.getElementById('root');
+      if (stackRoot) stackRoot.style.gap = '0px';
+    }
     window.setTimeout(() => {
       if (!this._config?.keep?.background) this._waitForChildren(this._card, true);
       if (this._config?.keep?.outer_padding && this._card?.shadowRoot) {
         const stackRoot = this._card.shadowRoot.getElementById('root');
         if (stackRoot) stackRoot.style.padding = '8px';
       }
-      if (this._card?.shadowRoot) {
-        const stackRoot = this._card.shadowRoot.getElementById('root');
-        if (stackRoot) stackRoot.style.gap = '0px';
-      }
+
     }, 500);
   }
 
