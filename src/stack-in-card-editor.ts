@@ -79,7 +79,7 @@ class StackInCardEditor extends LitElement implements LovelaceCardEditor {
 
   @state() protected _GUImode = true;
 
-  @query('stack-in-card-editor')
+  @query('hui-card-element-editor')
   protected _cardEditorEl?: any;
 
   @state() protected _guiModeAvailable? = true;
@@ -119,14 +119,14 @@ class StackInCardEditor extends LitElement implements LovelaceCardEditor {
       ></ha-form>
       <div class='card-config'>
         <div class='toolbar'>
-          <sl-tab-group @sl-tab-show=${this._handleSelectedCard}>
+          <ha-tab-group @wa-tab-show=${this._handleSelectedCard}>
             ${this._config.cards.map(
       (_card, i) =>
-        html`<sl-tab slot='nav' .panel=${i} .active=${i === selected}>
+        html`<ha-tab-group-tab slot='nav' .panel=${i} .active=${i === selected}>
                   ${i + 1}
-                </sl-tab>`
+                </ha-tab-group-tab>`
     )}
-          </sl-tab-group>
+          </ha-tab-group>
           <ha-icon-button
             @click=${this._handleAddCard}
             .path=${mdiPlus}
@@ -244,7 +244,7 @@ class StackInCardEditor extends LitElement implements LovelaceCardEditor {
     cards[this._selectedCard] = newCard;
     this._config = { ...this._config, cards };
     this._guiModeAvailable = ev.detail.guiModeAvailable;
-    fireEvent(this, 'config-changed', { config: this._config });
+    fireEvent(this, "config-changed", { config: this._config });
   }
 
   protected _handleCardPicked(ev) {
